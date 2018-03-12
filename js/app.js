@@ -13,7 +13,7 @@ const iconList = [
 
     'fa fa-cube',
 
-    'fa fa-anchor',
+    'fa fa-circle',
 
     'fa fa-leaf',
 
@@ -296,7 +296,7 @@ class CardGrid {
 
         this.movesDom.innerHTML = 0
 
-        this.matched = 14
+        this.matched = 0
 
         document.querySelector('.restart').addEventListener('click', function(grid) {
 
@@ -427,7 +427,9 @@ class CardGrid {
 
                 this.updateMoves()
 
-                this.moves === 10 && this.stars.removeStar() && this.moves === 20 && this.stars.removeStar()
+                this.moves === 10 && this.stars.removeStar() 
+
+                this.moves === 20 && this.stars.removeStar()
 
                 this.openCards.length = 0
 
@@ -460,8 +462,6 @@ class CardGrid {
 
     openModal() {
 
-        console.log(this.matched)
-
         if (this.matched === 16) {
 
             this.timer.clearTimer()
@@ -476,11 +476,7 @@ class CardGrid {
 
             document.querySelector('.modal-restart').addEventListener('click', function(grid) {
 
-                console.log("I did work ")
-
                 return function() {
-
-                    console.log("I am working")
 
                     grid.timer.clearTimer()
 
@@ -491,6 +487,12 @@ class CardGrid {
             }(this))
 
             document.querySelector('.modal-time').innerHTML = `${this.timer.minutes} : ${this.timer.seconds}`
+
+            document.querySelector('.modal-close').addEventListener('click',function(){
+            
+                document.querySelector('.modal-window').style.display = "none"
+
+            })
 
         }
 
